@@ -19,6 +19,7 @@ from t_headerrouting import HeaderRoutingTest
 from t_ratelimit import RateLimitTest
 from t_tracing import TracingTest
 from t_shadow import ShadowTest
+from t_retrypolicy import RetryPolicyTest
 from t_extauth import (
     AuthenticationTest,	
     AuthenticationTestV1,	
