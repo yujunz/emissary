@@ -67,6 +67,7 @@ class IRCluster (IRResource):
                  grpc: Optional[bool] = False,
                  allow_scheme: Optional[bool] = True,
                  load_balancer: Optional[dict] = None,
+                 circuit_breakers: Optional[list] = None,
 
                  cb_name: Optional[str]=None,
                  od_name: Optional[str]=None,
@@ -265,6 +266,7 @@ class IRCluster (IRResource):
             "urls": [ url ],
             "endpoint": endpoint,
             "load_balancer": load_balancer,
+            "circuit_breakers": circuit_breakers,
             "service": service,
             'enable_ipv4': enable_ipv4,
             'enable_ipv6': enable_ipv6,

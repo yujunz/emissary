@@ -35,6 +35,7 @@ class IRAmbassador (IRResource):
         'use_remote_address',
         'x_forwarded_proto_redirect',
         'load_balancer',
+        'circuit_breakers',
         'xff_num_trusted_hops'
     ]
 
@@ -80,6 +81,7 @@ class IRAmbassador (IRResource):
             use_remote_address=use_remote_address,
             x_forwarded_proto_redirect=False,
             load_balancer=None,
+            circuit_breakers=None,
             xff_num_trusted_hops=0,
             **kwargs
         )
@@ -239,6 +241,11 @@ class IRAmbassador (IRResource):
         if self.get('load_balancer', None) is not None:
             if not IRHTTPMapping.validate_load_balancer(self['load_balancer']):
                 self.post_error("Invalid load_balancer specified: {}".format(self['load_balancer']))
+                return False
+
+        if self.get('circuit_breakers', None) is not None:
+            if not IRHTTPMapping.validate_circuit_breakers(self['circuit_breakers']):
+                self.post_error("Invalid circuit_breakers specified: {}".format(self['circuit_breakers']))
                 return False
 
         return True
